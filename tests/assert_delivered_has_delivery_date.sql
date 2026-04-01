@@ -4,5 +4,5 @@ SELECT
 FROM
   {{ ref('stg_orders') }}
 WHERE
-  status = 'delivered'
+  order_status = 'delivered'
   AND delivered_at IS NULL

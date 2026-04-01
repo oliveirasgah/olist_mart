@@ -6,7 +6,7 @@ SELECT
 FROM
   {{ ref('stg_orders') }}
 WHERE
-  status = 'delivered'
+  order_status = 'delivered'
   AND (
     purchased_at > approved_at
     OR purchased_at > delivered_at

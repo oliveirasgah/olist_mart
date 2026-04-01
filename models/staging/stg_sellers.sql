@@ -4,4 +4,4 @@ SELECT
   seller_city AS city,
   seller_state AS state
 FROM
-  {{ source('raw', 'sellers') }};
+  {{ source('raw', 'sellers') }}

@@ -8,4 +8,4 @@ SELECT
   CAST(freight_value AS DECIMAL(10, 2)) AS freight_value,
   price + freight_value AS item_total
 FROM
-  {{ source('raw', 'order_items') }};
+  {{ source('raw', 'order_items') }}

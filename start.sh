@@ -7,7 +7,7 @@ echo "==> Installing dependencies..."
 poetry install
 
 echo "==> Loading raw data from '${RAW_DATA_PATH}'..."
-poetry run python load_raw.py "$RAW_DATA_PATH"
+poetry run python scripts/load_raw.py "$RAW_DATA_PATH"
 
 echo "==> Installing dbt packages..."
 poetry run dbt deps

@@ -5,4 +5,4 @@ SELECT
   customer_city AS city,
   customer_state AS state
 FROM
-  {{ source('raw', 'customers') }};
+  {{ source('raw', 'customers') }}
