@@ -117,7 +117,8 @@ You can optionally pass a custom path to the raw CSV files:
 ./start.sh /path/to/csv/files
 ```
 
-The default path is `raw_data/`.
+The default path is `raw_data/`. The script will exit with an error
+if the directory does not exist.
 
 ### Run steps individually
 

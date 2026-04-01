@@ -1,3 +1,5 @@
+import sys
+import os
 import duckdb
 import argparse
 
@@ -7,7 +9,13 @@ def path_parse():
     parser.add_argument("csv_path", nargs="?", default=None)
     args = parser.parse_args()
 
-    return args.csv_path if args.csv_path else "raw_data"
+    path = args.csv_path if args.csv_path else "raw_data"
+
+    if not os.path.isdir(path):
+        print(f"Error: directory '{path}' not found.")
+        sys.exit(1)
+
+    return path
 
 
 path = path_parse()
