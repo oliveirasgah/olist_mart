@@ -1,0 +1,22 @@
+version: 2
+
+sources:
+  - name: raw
+    description: Raw tables loaded into DuckDB from CSV files
+    schema: raw
+    tables:
+      - name: orders
+        description: One row per order
+      - name: order_items
+        description: One row per item within an order
+      - name: products
+        description: Product catalogue
+      - name: customers
+        description: Customer registry
+      - name: payments
+        description: Payment records per order
+      - name: sellers
+        description: Seller registry
+      - name: category_translation
+        description: Portuguese to English category names
+
