@@ -1,0 +1,79 @@
+version: 2
+
+models:
+  - name: mart_revenue_by_category
+    description: Aggregated revenue and order metrics per product category per month, restricted to delivered orders.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - revenue_month
+            - product_category_name
+    columns:
+      - name: revenue_month
+        tests:
+          - not_null
+      - name: product_category_name
+        tests:
+          - not_null
+      - name: orders_count
+        tests:
+          - not_null
+      - name: items_sold
+        tests:
+          - not_null
+      - name: total_revenue
+        tests:
+          - not_null
+      - name: total_freight
+        tests:
+          - not_null
+      - name: total_revenue_with_freight
+        tests:
+          - not_null
+      - name: avg_item_price
+        tests:
+          - not_null
+      - name: avg_order_value
+        tests:
+          - not_null
+      - name: avg_delivery_days
+        tests:
+          - not_null
+
+  - name: mart_seller_performance
+    description: Aggregated sales and delivery performance metrics per seller, restricted to delivered orders.
+    columns:
+      - name: seller_id
+        tests:
+          - unique
+          - not_null
+          - relationships:
+              to: ref('dim_sellers')
+              field: seller_id
+      - name: city
+        tests:
+          - not_null
+      - name: state
+        tests:
+          - not_null
+      - name: orders_count
+        tests:
+          - not_null
+      - name: items_sold
+        tests:
+          - not_null
+      - name: total_revenue
+        tests:
+          - not_null
+      - name: total_freight
+        tests:
+          - not_null
+      - name: avg_item_price
+        tests:
+          - not_null
+      - name: late_deliveries_count
+        tests:
+          - not_null
+      - name: late_delivery_rate_pct
+        tests:
+          - not_null

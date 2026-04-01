@@ -1,0 +1,81 @@
+version: 2
+
+models:
+  - name: dim_customers
+    columns:
+      - name: customer_id
+        tests:
+          - unique
+          - not_null
+      - name: customer_unique_id
+        tests:
+          - not_null
+      - name: zip_code
+        tests:
+          - not_null
+      - name: city
+        tests:
+          - not_null
+      - name: state
+        tests:
+          - not_null
+
+  - name: dim_products
+    columns:
+      - name: product_id
+        tests:
+          - unique
+          - not_null
+      - name: product_category_name
+        tests:
+          - not_null
+
+  - name: dim_sellers
+    columns:
+      - name: seller_id
+        tests:
+          - unique
+          - not_null
+      - name: zip_code
+        tests:
+          - not_null
+      - name: city
+        tests:
+          - not_null
+      - name: state
+        tests:
+          - not_null
+
+  - name: dim_dates
+    columns:
+      - name: date_day
+        tests:
+          - unique
+          - not_null
+      - name: year
+        tests:
+          - not_null
+      - name: month
+        tests:
+          - not_null
+      - name: day
+        tests:
+          - not_null
+      - name: quarter
+        tests:
+          - not_null
+      - name: week_of_year
+        tests:
+          - not_null
+      - name: day_of_week
+        tests:
+          - not_null
+      - name: day_name
+        tests:
+          - not_null
+      - name: month_name
+        tests:
+          - not_null
+      - name: is_weekend
+        tests:
+          - not_null
