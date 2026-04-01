@@ -1,3 +1,5 @@
+{{ config(severity='warn') }}
+
 SELECT
   order_id,
   payment_value

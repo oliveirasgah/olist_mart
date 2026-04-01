@@ -148,13 +148,38 @@ Custom tests live in `tests/` and cover assertions such as:
 dbt's built-in `not_null`, `unique`, and `relationships` tests are also
 applied across staging and mart models.
 
-> **Note:** some tests are intentionally failing. This is by design —
-> the purpose is to demonstrate that the testing layer is active and
-> capable of catching real data issues, not just passing silently. The
-> failures reflect actual inconsistencies present in the raw Olist
-> dataset (such as orders with mismatched payment totals or missing
-> delivery timestamps) and serve as proof that the assertions are
-> working as intended.
+Tests that surface known upstream data issues are configured with
+`severity: warn`, so `dbt build` exits clean while still reporting the
+findings. The issues found in the raw Olist dataset are documented in
+the section below.
+
+---
+
+## Data Quality Findings
+
+Running the test suite against the raw Olist dataset revealed the
+following issues in the source data:
+
+- **Payment/order value mismatch** — a subset of orders have a total
+  payment value that diverges from the sum of item prices and freight
+  by more than R$0.05. This is likely caused by rounding across
+  multiple payment installments or split payment methods.
+
+- **Delivered orders missing a delivery timestamp** — some orders with
+  status `delivered` have a null `delivered_at`. This points to
+  incomplete event logging on the source platform.
+
+- **Timestamp ordering violations** — a small number of delivered
+  orders have timestamps where approval or delivery precedes purchase,
+  indicating data entry errors or clock sync issues at the source.
+
+- **Products with no category** — a portion of products in the
+  catalogue have a null `product_category_name`, likely representing
+  listings that were removed or never fully configured.
+
+All of the above are treated as warnings rather than errors. The
+pipeline completes successfully and the findings are surfaced in the
+dbt test output for visibility.
 
 ---
 

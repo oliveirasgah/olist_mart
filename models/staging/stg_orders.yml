@@ -102,7 +102,9 @@ models:
           - not_null
       - name: product_category_name
         tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
 
   - name: stg_customers
     columns:

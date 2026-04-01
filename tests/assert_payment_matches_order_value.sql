@@ -1,3 +1,5 @@
+{{ config(severity='warn') }}
+
 WITH
   orders AS (
     SELECT

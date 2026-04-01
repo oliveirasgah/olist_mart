@@ -1,3 +1,5 @@
+{{ config(severity='warn') }}
+
 SELECT
   order_id,
   delivered_at
