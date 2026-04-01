@@ -28,10 +28,11 @@ files = {
 
 for table, file in files.items():
     con.execute(
-        f"CREATE OR REPLACE TABLE raw.{table} AS SELECT * FROM read_csv_auto('{file}')"
+        "CREATE OR REPLACE TABLE raw." + table + " AS SELECT * FROM read_csv_auto(?)",
+        [file]
     )
 
-    count = con.execute(f"SELECT count(*) FROM raw.{table}").fetchone()[0]
+    count = con.execute("SELECT count(*) FROM raw." + table).fetchone()[0]
     print(f"raw.{table}: {count} rows")
 
 con.close()
